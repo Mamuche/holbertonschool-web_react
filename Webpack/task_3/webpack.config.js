@@ -23,6 +23,7 @@ module.exports = {
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
       title: 'Holberton Dashboard',
+      chunks: ['header', 'body', 'footer'],
     }),
   ],
   module: {
