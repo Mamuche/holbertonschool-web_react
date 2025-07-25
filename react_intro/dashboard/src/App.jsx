@@ -3,7 +3,8 @@ import logo from './assets/holberton-logo.jpg';
 import './App.css'
 
 function App() {
-  const currentYear = new Date().getFullYear();
+  // const currentYear = new Date().getFullYear();
+  const currentYear = "2024";
 
   return (
     <>
