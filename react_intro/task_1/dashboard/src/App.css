@@ -9,11 +9,6 @@ html, body {
   min-height: 100vh;
 }
 
-/* .root-notifications {
-  border: 2px dotted #e1484c;
-  background-color: white !important;
-} */
-
 .App-header {
   display: flex;
   flex-direction: row;
