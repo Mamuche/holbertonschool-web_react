@@ -32,6 +32,12 @@ html, body {
   font-size: 1rem;
 }
 
+.App-form {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
 .App-footer {
   border-top: 3px solid #e1003c;
   text-align: center;
