@@ -1,7 +1,7 @@
 import './Notifications.css';
 import React from 'react';
 
-export function Notifications() {
+function Notifications() {
 	return (
 		<div className="notification">
       		<p>Here is the list of notifications</p>
@@ -9,3 +9,4 @@ export function Notifications() {
 	);
 }
 
+export default Notifications
