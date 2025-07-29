@@ -22,10 +22,10 @@ function App() {
           <p>Login to access the full dashboard</p>
           <form>
             <label htmlFor="email">email</label>
-            <input name="email" id="email" />
+            <input type="email" name="email" id="email" />
 
             <label htmlFor="password">password</label>
-            <input name="password" id="password" />
+            <input type="password" name="password" id="password" />
 
             <button type="submit">OK</button>
           </form>
