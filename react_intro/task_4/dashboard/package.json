@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://Mamuche.github.io/holbertonschool-web_react",
+  "homepage": "https://Mamuche.github.io/holbertonschool-web_react/react_intro/task_4/dashboard",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
@@ -11,7 +11,7 @@
     "preview": "vite preview",
     "test": "jest",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist"
+    "deploy": "gh-pages -d dist -r "
   },
   "dependencies": {
     "gh-pages": "^6.3.0",
