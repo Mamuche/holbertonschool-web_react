@@ -11,26 +11,26 @@ function Notifications({ displayDrawer = false, list = [] }) {
       </div>
 
       {displayDrawer && (
-        <div className="notification" >
-          <button
-            style={{
-              position: 'absolute',
-              top: '10px',
-              right: '10px',
-              background: 'transparent',
-              border: 'none',
-              cursor: 'pointer'
-            }}
-            aria-label="Close"
-            onClick={() => console.log('Close button has been clicked')}
-          >
-            <img src={closeIcon} alt="close icon" />
-          </button>
-
+        <div className="notification">
           {list.length === 0 ? (
-            <p>No new notification for now</p>
+            <p className="empty-notification">No new notification for now</p>
           ) : (
             <>
+              <button
+                style={{
+                  position: 'absolute',
+                  top: '10px',
+                  right: '10px',
+                  background: 'transparent',
+                  border: 'none',
+                  cursor: 'pointer'
+                }}
+                aria-label="Close"
+                onClick={() => console.log('Close button has been clicked')}
+              >
+                <img src={closeIcon} alt="close icon" />
+              </button>
+
               <p>Here is the list of notifications</p>
               <ul>
                 {list.map((notif) => (

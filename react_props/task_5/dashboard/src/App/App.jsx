@@ -37,7 +37,7 @@ function App({ isLoggedIn = false, coursesList, displayDrawer = false }) {
     <>
       <div className="App">
         
-        <Notifications list={notificationsList} displayDrawer={displayDrawer}/>
+        <Notifications list={[]} displayDrawer={displayDrawer}/>
 
         <Header/>
 
