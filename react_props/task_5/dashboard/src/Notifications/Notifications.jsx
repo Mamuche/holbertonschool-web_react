@@ -11,7 +11,7 @@ function Notifications({ displayDrawer = false, list = [] }) {
       </div>
 
       {displayDrawer && (
-        <div className="notification" style={{ position: 'relative', paddingRight: '30px' }}>
+        <div className="notification" >
           <button
             style={{
               position: 'absolute',
@@ -24,7 +24,7 @@ function Notifications({ displayDrawer = false, list = [] }) {
             aria-label="Close"
             onClick={() => console.log('Close button has been clicked')}
           >
-            <img src={closeIcon} alt="close icon" style={{ width: '10px', height: '10px' }} />
+            <img src={closeIcon} alt="close icon" />
           </button>
 
           {list.length === 0 ? (
