@@ -75,4 +75,20 @@ describe('App component', () => {
     mockAlert.mockRestore();
   });
 
+  test('displays "Course list" title when isLoggedIn is true', () => {
+  render(<App isLoggedIn={true} />);
+  expect(screen.getByText(/course list/i)).toBeInTheDocument();
+  });
+
+  test('displays "Log in to continue" title when isLoggedIn is false', () => {
+    render(<App isLoggedIn={false} />);
+    expect(screen.getByText(/log in to continue/i)).toBeInTheDocument();
+  });
+
+  test('displays news section by default', () => {
+    render(<App />);
+    expect(screen.getByText(/news from the school/i)).toBeInTheDocument();
+    expect(screen.getByText(/holberton school news goes here/i)).toBeInTheDocument();
+  });
+
 });
