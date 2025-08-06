@@ -61,4 +61,21 @@ describe('Notifications component', () => {
     console.log.mockRestore();
   });
   
+  test('does not re-render if list length stays the same', () => {
+    const { rerender } = render(<Notifications displayDrawer={true} list={testList} />);
+    const initialItems = screen.getAllByRole('listitem');
+      const sameLengthList = [...testList];
+    rerender(<Notifications displayDrawer={true} list={sameLengthList} />);
+    const itemsAfterRerender = screen.getAllByRole('listitem');
+    expect(itemsAfterRerender).toEqual(initialItems);
+  });
+
+  test('re-renders if list length changes', () => {
+    const { rerender } = render(<Notifications displayDrawer={true} list={testList} />);
+    expect(screen.getAllByRole('listitem').length).toBe(3);
+    const longerList = [...testList, { id: 4, type: 'default', value: 'New one' }];
+    rerender(<Notifications displayDrawer={true} list={longerList} />);
+    expect(screen.getAllByRole('listitem').length).toBe(4);
+  });
+
 });
