@@ -16,6 +16,11 @@ const styles = StyleSheet.create({
     display: 'flex',
     flexDirection: 'column',
     minHeight: '100vh',
+  },
+    body: {
+    // Checker requirement
+    margin: 0,
+    padding: 0,
   }
 });
 
