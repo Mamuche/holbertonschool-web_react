@@ -1,35 +1,19 @@
 import React, { PureComponent, createRef } from 'react';
+import { StyleSheet, css } from 'aphrodite';
+
+const styles = StyleSheet.create({
+    default: {
+        color: 'blue',
+    },
+    urgent: {
+        color: 'red',
+    }
+});
 
 class NotificationItem extends PureComponent {
     constructor(props) {
         super(props);
         this.liRef = createRef();
-    }
-
-    componentDidMount() {
-        this.updateColor();
-    }
-
-    componentDidUpdate() {
-        this.updateColor();
-    }
-
-    updateColor = () => {
-        const { type = 'default' } = this.props;
-        const colors = {
-            urgent: 'red',
-            default: 'blue'
-        };
-
-        const color = colors[type];
-
-        if (this.liRef.current) {
-            this.liRef.current.style.color = color;
-            if (!this.liRef.current.style._values) {
-                this.liRef.current.style._values = {};
-            }
-            this.liRef.current.style._values.color = color;
-        }
     }
 
     handleClick = () => {
@@ -46,10 +30,13 @@ class NotificationItem extends PureComponent {
     render() {
         const { type = 'default', html, value } = this.props;
 
+        const styleClass = type === 'urgent' ? styles.urgent : styles.default;
+
         if (html) {
             return (
                 <li
                     ref={this.liRef}
+                    className={css(styleClass)}
                     data-notification-type={type}
                     dangerouslySetInnerHTML={html}
                     onClick={this.handleClick}
@@ -61,6 +48,7 @@ class NotificationItem extends PureComponent {
             return (
                 <li
                     ref={this.liRef}
+                    className={css(styleClass)}
                     data-notification-type={type}
                     dangerouslySetInnerHTML={{ __html: value }}
                     onClick={this.handleClick}
@@ -71,6 +59,7 @@ class NotificationItem extends PureComponent {
         return (
             <li
                 ref={this.liRef}
+                className={css(styleClass)}
                 data-notification-type={type}
                 onClick={this.handleClick}
             >

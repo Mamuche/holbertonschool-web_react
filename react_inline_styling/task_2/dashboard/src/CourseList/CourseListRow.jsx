@@ -1,34 +1,57 @@
 import React from 'react';
+import { StyleSheet, css } from 'aphrodite';
+
+const styles = StyleSheet.create({
+    headerRow: {
+        backgroundColor: '#deb5b545',
+    },
+    defaultRow: {
+        backgroundColor: '#f5f5f5ab',
+    },
+    thDefault: {
+        // Style par défaut pour les th
+    },
+    thColspan: {
+        // Style pour th avec colspan
+    },
+    tdCenter: {
+        textAlign: 'center',
+    },
+    tdEmpty: {
+        border: 'none',
+        width: '0%',
+    }
+});
 
 function CourseListRow({ isHeader = false, textFirstCell = "", textSecondCell = null }) {
-    const rowStyle = { backgroundColor: isHeader ? '#deb5b545' : '#f5f5f5ab' };
+    const rowStyleClass = isHeader ? styles.headerRow : styles.defaultRow;
 
     if (isHeader === true) {
         if (textSecondCell === null) {
             return (
-                <tr style={rowStyle}>
-                    <th colSpan="2">{textFirstCell}</th>
+                <tr className={css(rowStyleClass)}>
+                    <th className={css(styles.thColspan)} colSpan="2">{textFirstCell}</th>
                 </tr>
             );
         } else {
             return (
-                <tr style={rowStyle}>
-                    <th>{textFirstCell}</th>
-                    <th>{textSecondCell}</th>
+                <tr className={css(rowStyleClass)}>
+                    <th className={css(styles.thDefault)}>{textFirstCell}</th>
+                    <th className={css(styles.thDefault)}>{textSecondCell}</th>
                 </tr>
             );
         }
     } else {
         if (textSecondCell === null) {
             return (
-                <tr style={rowStyle}>
-                    <td style={{ textAlign: 'center' }}>{textFirstCell}</td>
-                    <td style={{ border: 'none', width: '0%' }}></td>
+                <tr className={css(rowStyleClass)}>
+                    <td className={css(styles.tdCenter)}>{textFirstCell}</td>
+                    <td className={css(styles.tdEmpty)}></td>
                 </tr>
             );
         } else {
             return (
-                <tr style={rowStyle}>
+                <tr className={css(rowStyleClass)}>
                     <td>{textFirstCell}</td>
                     <td>{textSecondCell}</td>
                 </tr>
