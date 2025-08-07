@@ -10,7 +10,7 @@ class Notifications extends Component {
   };
 
   shouldComponentUpdate(nextProps) {
-    return nextProps.list.length !== this.props.list.length;
+    return nextProps.list !== this.props.list;
   }
 
   markAsRead(id) {
@@ -18,6 +18,7 @@ class Notifications extends Component {
   }
 
   render() {
+    console.log('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!Notifications rendered');
     const { displayDrawer, list } = this.props;
 
     return (
