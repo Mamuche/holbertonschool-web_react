@@ -10,11 +10,3 @@
   margin-bottom: 5px;
 }
 
-.notification li[data-notification-type="default"] {
-  color: blue;
-}
-
-.notification li[data-notification-type="urgent"] {
-  color: red;
-  font-weight: bold;
-}

@@ -2,14 +2,17 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 function NotificationItem({ type, html, value }) {
+  const style = {
+    color: type === 'urgent' ? 'red' : 'blue'
+  };
   if (html) {
     return (
-      <li data-notification-type={type} dangerouslySetInnerHTML={html}></li>
+      <li data-notification-type={type} dangerouslySetInnerHTML={html} style={style}></li>
     );
   }
 
   return (
-    <li data-notification-type={type}>{value}</li>
+    <li data-notification-type={type} style={style}>{value}</li>
   );
 }
 
