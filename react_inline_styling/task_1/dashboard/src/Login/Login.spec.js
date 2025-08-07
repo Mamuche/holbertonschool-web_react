@@ -1,33 +1,33 @@
+import React from 'react';
 import Login from './Login';
 import { render, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import { StyleSheetTestUtils } from 'aphrodite';
 
-beforeAll(() => {
+beforeEach(() => {
   StyleSheetTestUtils.suppressStyleInjection();
 });
 
-afterAll(() => {
+afterEach(() => {
   StyleSheetTestUtils.clearBufferAndResumeStyleInjection();
 });
 
-test('contains 2 inputs', () => {
-	render(<Login/>)
-	const emailInput = screen.getByLabelText(/email/i);
-	const passwordInput = screen.getByLabelText(/password/i);
-	expect(emailInput).toBeInTheDocument();
-	expect(passwordInput).toBeInTheDocument();
+test('renders 2 labels, 2 inputs and 1 button', () => {
+  const { container } = render(<Login />);
+  const labels = container.querySelectorAll('label');
+  const inputs = container.querySelectorAll('input');
+  expect(labels.length).toBe(2);
+  expect(inputs.length).toBe(2);
+  expect(screen.getByRole('button', { name: /ok/i })).toBeInTheDocument();
 });
 
-test('contains 2 labels with text "Email" and "Holberton"', () => {
-	render(<Login/>)
-	const emailLabel = screen.getByText(/email/i);
-	const passwordLabel = screen.getByText(/password/i);
-	expect(emailLabel.tagName).toBe('LABEL');
-	expect(passwordLabel.tagName).toBe('LABEL');
-});
+test('focuses the input when its label is clicked', async () => {
+  const { container } = render(<Login />);
+  const user = userEvent.setup();
 
-test('contains 1 button with text "OK"', () => {
-	render(<Login/>)
-	const button = screen.getByRole('button', { name: /ok/i });
-	expect(button).toBeInTheDocument();
+  const emailLabel = container.querySelector('label[for="email"]');
+  const emailInput = screen.getByLabelText(/email/i);
+
+  await user.click(emailLabel);
+  expect(emailInput).toHaveFocus();
 });

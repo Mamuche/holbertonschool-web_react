@@ -1,81 +1,85 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import CourseListRow from './CourseListRow';
 import { StyleSheet, css } from 'aphrodite';
 
-
-const styles = StyleSheet.create({
-  courseListContainer: {
-    width: '100%',
-    marginTop: '20px',
-    fontFamily: 'Arial, sans-serif',
-  },
-  table: {
-    width: '100%',
-    border: '1px solid #ccc',
-    borderCollapse: 'collapse',
-  },
-  th: {
-    border: '1px solid #ccc',
-    padding: '8px',
-    textAlign: 'center',
-    fontWeight: 'bold',
-  },
-  td: {
-    border: '1px solid #ccc',
-    padding: '8px',
-    textAlign: 'left',
-  },
-  noCourse: {
-    textAlign: 'center',
-    fontWeight: 'bold',
-  },
-});
-
 function CourseList({ courses = [] }) {
-  return (
-    <div className={css(styles.courseListContainer)}>
-      <table className={css(styles.table)}>
-        {courses.length === 0 ? (
-          <tbody>
-			<tr>
-				<td className={css(styles.noCourse)} colSpan="2">No course available yet</td>
-			</tr>
-		  </tbody>
-        ) : (
-          <>
-            <thead>
-              <CourseListRow textFirstCell="Available courses" isHeader={true} />
-              <CourseListRow
-                textFirstCell="Course name"
-                textSecondCell="Credit"
-                isHeader={true}
-              />
-            </thead>
-            <tbody>
-              {courses.map((course) => (
-                <CourseListRow
-                  key={course.id}
-                  textFirstCell={course.name}
-                  textSecondCell={course.credit.toString()}
-                />
-              ))}
-            </tbody>
-          </>
-        )}
-      </table>
-    </div>
-  );
-}
+    const styles = StyleSheet.create({
+        CourseListContainer: {
+            width: '100%',
+            height: '100%',
+            padding: '0 5rem',
+            flex: 1,
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center'
+        },
+        CourseList: {
+            width: '100%',
+            borderCollapse: 'collapse',
+            // Styles pour les th
+            ':nth-child(1n) th': {
+                textAlign: 'center',
+                padding: '0.20rem',
+                border: '1px solid black'
+            },
+            // Styles pour les td
+            ':nth-child(1n) td': {
+                textAlign: 'left',
+                padding: '0.20rem',
+                border: '1px solid black'
+            },
+            // Première colonne (th et td)
+            ':nth-child(1n) th:first-child': {
+                width: '60%'
+            },
+            ':nth-child(1n) td:first-child': {
+                width: '60%'
+            },
+            // Dernière colonne (th et td)
+            ':nth-child(1n) th:last-child': {
+                width: '40%'
+            },
+            ':nth-child(1n) td:last-child': {
+                width: '40%'
+            }
+        }
+    });
 
-CourseList.propTypes = {
-  courses: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.number.isRequired,
-      name: PropTypes.string.isRequired,
-      credit: PropTypes.number.isRequired,
-    })
-  ),
-};
+    if (courses.length === 0) {
+        return (
+            <div className={css(styles.CourseListContainer)}>
+                <table className={css(styles.CourseList)}>
+                    <tbody>
+                        <CourseListRow textFirstCell="No course available yet" />
+                    </tbody>
+                </table>
+            </div>
+        );
+    }
+
+    return (
+        <div className={css(styles.CourseListContainer)}>
+            <table className={css(styles.CourseList)}>
+                <thead>
+                    <CourseListRow textFirstCell="Available courses" isHeader={true} />
+                    <CourseListRow
+                        textFirstCell="Course name"
+                        textSecondCell="Credit"
+                        isHeader={true}
+                    />
+                </thead>
+                <tbody>
+                    {courses.map(course => (
+                        <CourseListRow
+                            key={course.id}
+                            textFirstCell={course.name}
+                            textSecondCell={course.credit.toString()}
+                        />
+                    ))}
+                </tbody>
+            </table>
+        </div>
+    );
+}
 
 export default CourseList;

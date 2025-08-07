@@ -1,24 +1,30 @@
+import React from 'react';
+import Header from './Header';
 import { render, screen } from '@testing-library/react';
 import { StyleSheetTestUtils } from 'aphrodite';
 
-beforeAll(() => {
-	StyleSheetTestUtils.suppressStyleInjection();
+beforeEach(() => {
+    StyleSheetTestUtils.suppressStyleInjection();
 });
 
-afterAll(() => {
-	StyleSheetTestUtils.clearBufferAndResumeStyleInjection();
+afterEach(() => {
+    StyleSheetTestUtils.clearBufferAndResumeStyleInjection();
 });
 
-import Header from './Header';
+test('renders img element', () => {
+    render(<Header />);
 
-test('h1 with text "School dashboard"', () => {
-	render(<Header/>)
-    const heading = screen.getByRole('heading', { level: 1, name: /school dashboard/i });
-    expect(heading).toBeInTheDocument();
-  });
+    const imgElement = screen.getByAltText(/holberton logo/i);
 
-test('image with text "holberton logo"', () => {
-	render(<Header/>)
-	const logoImg = screen.getByAltText(/holberton logo/i);
-	expect(logoImg).toBeInTheDocument();
+    expect(imgElement).toBeInTheDocument();
+});
+
+test('Renders h1 element with "School Dashboard text"', () => {
+    render(<Header />);
+
+    const headingElement = screen.getByRole('heading', {
+        name: /school dashboard/i
+    });
+
+    expect(headingElement).toBeInTheDocument();
 });
