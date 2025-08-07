@@ -10,7 +10,10 @@ class Notifications extends Component {
   };
 
   shouldComponentUpdate(nextProps) {
-    return nextProps.list !== this.props.list;
+      const currentLength = this.props.notifications ? this.props.notifications.length : 0;
+      const nextLength = nextProps.notifications ? nextProps.notifications.length : 0;
+
+      return currentLength !== nextLength;
   }
 
   markAsRead(id) {
